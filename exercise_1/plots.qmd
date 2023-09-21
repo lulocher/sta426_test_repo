@@ -1,0 +1,46 @@
+---
+title: "Exercise 1"
+author: "Luca Locher"
+format: html
+editor: visual
+---
+
+### Preparation
+
+Load dependencies
+
+```{r}
+library(ggplot2)
+```
+
+Draw sample from log normal distribution
+
+```{r}
+set.seed(1)
+sample <- rlnorm(100, 5, 0.5)
+mean <- mean(sample)
+stddev <- sd(sample)
+```
+
+The sample has a mean of `r round(mean, 2)` and a standard deviation of `r round(stddev, 2)` 
+
+Create a a histogram both on the normal and log scale
+
+```{r}
+
+ggplot() + 
+  geom_histogram(aes(x=sample), bins=20, color='gray') +
+  theme_minimal()
+
+ggplot() + 
+  geom_histogram(aes(x=log(sample)), bins=20, color='gray') +
+  theme_minimal()
+```
+
+Create a violin plot
+
+```{r}
+ggplot() + 
+  geom_violin(aes(x='Sample', y=sample)) +
+  theme_minimal()
+```
